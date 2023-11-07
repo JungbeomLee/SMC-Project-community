@@ -1,0 +1,87 @@
+/* style.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+.logo {
+    width: 30%; /* Responsive width */
+    max-width: 500px; /* Increased maximum width */
+    height: auto;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1 {
+    color: #333;
+    margin: 0;
+    margin-bottom: 30px;
+}
+.smc-highlight {
+    color: #0F5A3A; /* 적용하고자 하는 HEX 색상 코드 */
+    font-weight: 900;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+footer {
+    text-align: center;
+    font-size: 12px; /* 작은 글씨 크기로 설정 */
+    color: #777; /* 글씨 색상은 회색으로 설정 */
+    width: 100%;
+    padding: 20px 0;
+    position: absolute; /* 페이지 하단에 위치하도록 설정 */
+    bottom: 0;
+    left: 0;
+}
+input[type=button] {
+    width: 60%; /* Responsive width */
+    max-width: 300px; /* Maximum width */
+    padding: 20px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5C6BC0;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+input[type=button]:hover {
+    background-color: #3F51B5;
+}
+
+
+/* Media Queries for Responsive Adjustments */
+@media (max-width: 768px) {
+    .logo {
+        width: 50%;
+    }
+    input[type=button] {
+        width: 80%;
+        padding: 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 70%;
+    }
+    input[type=button] {
+        width: 90%;
+        padding: 10px;
+        font-size: 14px;
+    }
+}

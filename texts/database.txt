@@ -1,0 +1,11 @@
+# project post table
+create table project_post(
+    post int not null primary key AUTO_INCREMENT,
+    username varchar(8) not null,
+    post1LineIntro varchar(40) not null,
+    postIntro varchar(320) not null,
+    github varchar(100),
+    link varchar(100),
+    image varchar(50) not null,
+    like int not null default 0
+);

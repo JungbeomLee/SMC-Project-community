@@ -39,7 +39,7 @@ def main_page():
         if not post_id : 
             post_id = 1
         else :
-            post_id = post_id[0]+1
+            post_id = post_id[0]['project_post_id']+1
 
         # 이미지 파일 저장
         filename_list = []

@@ -1,12 +1,25 @@
-# project post table
-create table project_post(
-    post int not null primary key AUTO_INCREMENT,
-    username varchar(8) not null,
-    postName varchar(20) not null,
-    post1LineIntro varchar(40) not null,
-    postIntro varchar(320) not null,
-    github varchar(100),
-    link varchar(100),
-    image varchar(50) not null,
-    like int not null default 0
+CREATE TABLE project_post (
+  project_post_id INT NOT NULL AUTO_INCREMENT,
+  project_title VARCHAR(255) NOT NULL,
+  project_image_name VARCHAR(255),
+  project_OneLine_info VARCHAR(255),
+  project_info TEXT,
+  project_link VARCHAR(255),
+  github VARCHAR(255),
+  user_insta VARCHAR(255),
+  user_email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (project_post_id)
+);
+
+CREATE TABLE project_post_comment (
+  comment_id INT NOT NULL AUTO_INCREMENT,
+  project_post_id INT NOT NULL,
+  user_id INT NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  comment_text TEXT NOT NULL,
+  comment_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (comment_id),
+  FOREIGN KEY (project_post_id) REFERENCES project_posts(project_post_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

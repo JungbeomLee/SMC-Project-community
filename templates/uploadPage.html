@@ -4,158 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/uploadPage.css">
     <title>Upload Project</title>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>   
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        /* 모든 요소에 대해 box-sizing을 border-box로 설정합니다. */
-        *, *:before, *:after {
-            box-sizing: border-box;
-        }
-
-        /* 폼 내부의 모든 input과 textarea 요소에 대해 스타일을 설정합니다. */
-        input {
-            width: calc(100% - 20px); /* 폼의 padding 값을 고려하여 계산 */
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            display: block;
-        }
-
-        /* Submit 버튼에 대한 스타일 */
-        input[type="submit"] {
-            /* 폼의 padding 값을 고려하여 계산 */
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #5C6BC0;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* form 스타일을 조정하여 padding 값을 반영합니다. */
-        form {
-            padding: 10px; /* 원하는 padding 값으로 조정 */
-            margin: 30px auto; /* 상단과 하단 여백 설정 */
-            max-width: 600px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        form {
-            background-color: #fff;
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            display: block;
-            resize: vertical; /* 사용자가 수직으로 크기 조절 가능 */
-        }
-        input[type="text"],
-        input[type="file"] {
-            width: 100%; /* 폼의 너비에 맞게 설정 */
-            padding: 10px;
-            margin-bottom: 10px; /* 여백 설정 */
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            display: block;
-        }
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 5px;
-            border: none;
-            background-color: #5C6BC0;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        input[type="submit"]:hover {
-            background-color: #3F51B5;
-        }
-        label {
-            text-align: left;
-            display: block;
-            margin-top: 20px;
-        }
-        #projectUploadForm {
-            /* 폼 내부 스크롤을 허용합니다. */
-            max-height: 80vh; /* 폼의 최대 높이 설정 */
-            overflow-y: auto; /* 내용이 넘칠 때 스크롤바 표시 */
-        }
-
-        .image-upload-container {
-            margin-bottom: 10px; /* 이미지 입력 필드 간격 */
-        }
-
-        /* "더 추가" 버튼 스타일 */
-        #addImageButton {
-            padding: 8px 12px;
-            margin-top: 10px;
-            background-color: #f4f4f4; /* 배경색을 body의 배경색과 동일하게 설정 */
-            color: #888; /* 텍스트 색상을 어둡게 하여 대비를 낮춤 */
-            border: 1px solid #ccc; /* 심플한 경계선 */
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        #addImageButton:hover {
-            background-color: #e6e6e6; /* 호버 시 약간 어두운 배경색 */
-            color: #666; /* 호버 시 텍스트 색상을 약간 더 어둡게 */
-        }
-        /* Text counter style */
-        .text-counter {
-            display: block;
-            font-size: 0.75em;
-            color: #888;
-            margin-top: -8px;
-            margin-bottom: 8px;
-        }
-
-        /* Image counter style */
-        .image-counter {
-            font-size: 0.75em;
-            color: #888;
-            display: block;
-            margin-top: 10px;
-        }
-        .tox-tinymce {
-            margin-bottom: 24px; /* 텍스트 카운터가 보이도록 충분한 여백 추가 */
-        }
-    </style>
 </head>
 <body>
     <h1>Upload Project</h1>
-    <form id="projectUploadForm" name="projectUploadForm">
+    <form id="projectUploadForm" name="projectUploadForm"> 
         <!-- Project Name -->
         <label for="projectName">Project Name:</label>
-        <input type="text" id="projectName" name="projectName" placeholder="Enter your project name" maxlength="20" oninput="updateTextCounter(this, 'projectNameCounter')">
+        <input type="text" id="projectName" name="projectName" placeholder="Enter your project name" maxlength="20" oninput="updateTextCounter(this, 'projectNameCounter')" required>
         <span id="projectNameCounter" class="text-counter">0/20</span>
 
         <!-- One-Line Introduction -->
         <label for="projectOneLineIntroduction">One-Line Introduction:</label>
-        <input type="text" id="projectOneLineIntroduction" name="projectOneLineIntroduction" placeholder="Enter a one-line introduction" maxlength="50" oninput="updateTextCounter(this, 'projectOneLineIntroductionCounter')">
+        <input type="text" id="projectOneLineIntroduction" name="projectOneLineIntroduction" placeholder="Enter a one-line introduction" maxlength="50" oninput="updateTextCounter(this, 'projectOneLineIntroductionCounter')" required>
         <span id="projectOneLineIntroductionCounter" class="text-counter">0/50</span>
 
         <!-- Project Introduction -->
@@ -166,150 +29,28 @@
         <!-- 이미지 추가 버튼과 카운터 -->
         <label for="projectImage">Project Image:</label>
         <div class="image-upload-container">
-            <input type="file" id="projectImage" name="projectImages" accept="image/*" onchange="updateImageCounter()">
+            <input type="file" id="projectImage" class="projectImage" name="projectImages" accept="image/*" onchange="updateImageCounter()" required>
         </div>
         <button type="button" id="addImageButton" onclick="addImageField()">Add Image</button>
         <span id="imageCounter" class="image-counter">1/5</span>
 
+        <!-- 이메일 및 비밀번호 입력 칸 -->
+        <div class="horizontal-group">
+            <div class="form-group">
+                <label for="email">Admin Email:</label>
+                <input type="email" id="email" name="adminEmail" placeholder="Enter admin email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="adminPassword" placeholder="Enter password" required>
+            </div>
+        </div>
+
         <!-- Submit Button -->
-        <input type="submit" value="Submit Project">
+        <input type="submit" value="Submit Project" onclick="uploadPost()">
     </form>
 
-
-    <script>
-        tinymce.init({
-            selector: 'textarea#projectIntroduction',
-            menubar: false,
-            statusbar: false,
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar: 'undo redo | formatselect | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            // setup 함수는 에디터의 초기화 중에 호출되는 콜백입니다.
-            setup: function (editor) {
-                var maxIntroductionLength = 1500;
-                function updateCharacterCount() {
-                    var textContent = editor.getContent({ format: 'text' });
-                    var currentLength = textContent.length;
-        
-                    // 글자 수가 최대 글자 수를 초과하면 초과하는 부분을 자릅니다.
-                    if (currentLength > maxIntroductionLength) {
-                        // 이전에 정상적으로 입력된 내용으로 되돌립니다.
-                        editor.undoManager.undo();
-                        return; // 카운터 업데이트를 방지하기 위해 여기서 리턴합니다.
-                    }
-        
-                    // 현재 글자 수를 업데이트합니다.
-                    var counter = document.getElementById('projectIntroductionCounter');
-                    if(counter) {
-                        counter.textContent = currentLength + '/' + maxIntroductionLength;
-                    }
-                }
-        
-                editor.on('init', function() {
-                    // 에디터 초기화 후 현재 글자 수를 업데이트합니다.
-                    updateCharacterCount();
-                });
-        
-                // 에디터 내용이 변경될 때마다 호출될 이벤트 핸들러 등록
-                editor.on('keydown', function (e) {
-                    updateCharacterCount();
-                });
-        
-                editor.on('keyup', function (e) {
-                    updateCharacterCount();
-                });
-        
-                editor.on('change', function (e) {
-                    updateCharacterCount();
-                });
-            }
-        });
-    </script>        
-    <script>
-        function addImageField() {
-            // 이미지 입력 필드를 포함할 div를 생성합니다.
-            var container = document.createElement("div");
-            container.className = 'image-upload-container';
-
-            // input 타입 'file'을 생성합니다.
-            var input = document.createElement("input");
-            input.type = "file";
-            input.name = "projectImages";
-            input.accept = "image/*";
-
-            // 생성된 input을 div에 추가합니다.
-            container.appendChild(input);
-
-            // 생성된 div를 form에 추가합니다.
-            var form = document.getElementById("projectUploadForm");
-            var addButton = document.getElementById("addImageButton");
-            form.insertBefore(container, addButton);
-        }
-    </script>
-    <script>
-        function addImageField() {
-            // 이미지 입력 필드의 수를 체크합니다.
-            var imageFields = document.querySelectorAll('input[name="projectImages"]').length;
-            var maxFields = 5;
-    
-            // 이미지 입력 필드의 수가 최대 개수보다 적으면 새 필드를 추가합니다.
-            if (imageFields < maxFields) {
-                var container = document.createElement("div");
-                container.className = 'image-upload-container';
-    
-                var input = document.createElement("input");
-                input.type = "file";
-                input.name = "projectImages";
-                input.accept = "image/*";
-    
-                container.appendChild(input);
-    
-                var form = document.getElementById("projectUploadForm");
-                var addButton = document.getElementById("addImageButton");
-                form.insertBefore(container, addButton);
-    
-                // 현재 이미지 수를 업데이트합니다.
-                updateImageCounter();
-            } else {
-                alert('You can only add up to ' + maxFields + ' images.');
-            }
-        }
-    
-        function updateImageCounter() {
-            // 현재 이미지 수를 셉니다.
-            var imageFields = document.querySelectorAll('input[name="projectImages"]').length;
-            var maxFields = 5;
-    
-            // 이미지 카운터 업데이트
-            var imageCounter = document.getElementById("imageCounter");
-            imageCounter.textContent = imageFields + '/' + maxFields;
-        }
-    
-        // projectName 및 projectOneLineIntroductionCounter 업데이트 함수 추가
-        function updateTextCounter(input, counterId, maxLength) {
-            var counter = document.getElementById(counterId);
-            var currentLength = input.value.length;
-            counter.textContent = currentLength + '/' + maxLength;
-        }
-    
-        // projectName 및 projectOneLineIntroduction 입력 필드에 대한 이벤트 리스너 추가
-        var projectNameInput = document.getElementById("projectName");
-        projectNameInput.addEventListener("input", function () {
-            updateTextCounter(this, 'projectNameCounter', 20); // 20은 최대 글자 수입니다.
-        });
-    
-        var oneLineIntroductionInput = document.getElementById("projectOneLineIntroduction");
-        oneLineIntroductionInput.addEventListener("input", function () {
-            updateTextCounter(this, 'projectOneLineIntroductionCounter', 50); // 50은 최대 글자 수입니다.
-        });
-    </script>
-    
-    
+    <script src="../static/javascript/uploadPage.js"></script>
+    <script src="../static/javascript/uploadPage_post.js"></script>
 </body>
 </html>

@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Set box-sizing to border-box for all elements */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+/* Style for all input and textarea elements within forms */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    /* Specific styles if necessary */
+}
+
+textarea {
+    resize: vertical; /* Allows the user to vertically resize the textarea */
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+    border: none;
+    background-color: #5C6BC0;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #3F51B5;
+}
+
+/* Form styling */
+form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    text-align: left;
+    display: block;
+    margin-top: 20px;
+}
+
+#projectUploadForm {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.image-upload-container {
+    margin-bottom: 10px;
+}
+
+/* Style for the "Add More" button */
+#addImageButton {
+    padding: 8px 12px;
+    margin-top: 10px;
+    background-color: #f4f4f4;
+    color: #888;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#addImageButton:hover {
+    background-color: #e6e6e6;
+    color: #666;
+}
+
+/* Styles for counters */
+.text-counter, .image-counter {
+    font-size: 0.75em;
+    color: #888;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.tox-tinymce {
+    margin-bottom: 24px;
+}
+
+/* Styles for horizontal grouping */
+.horizontal-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+/* Webkit 스크롤 바 스타일링 */
+#projectUploadForm::-webkit-scrollbar {
+    width: 12px; /* 스크롤 바의 너비 */
+}
+
+#projectUploadForm::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤 바 트랙의 배경색 */
+    border-radius: 10px;
+}
+
+#projectUploadForm::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤 바의 색상 */
+    border-radius: 10px;
+}
+
+#projectUploadForm::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 스크롤 바에 호버할 때의 색상 */
+}
+
+/* 파이어폭스 스크롤 바 스타일링 */
+#projectUploadForm {
+    scrollbar-width: thin; /* 스크롤 바의 두께: 'auto', 'thin', 'none' 중 선택 */
+    scrollbar-color: #888 #f1f1f1; /* 스크롤 바/트랙 색상: thumb and track */
+}

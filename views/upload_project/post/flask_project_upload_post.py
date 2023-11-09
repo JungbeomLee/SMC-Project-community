@@ -1,11 +1,11 @@
 from flask import Blueprint, request
 from werkzeug.utils import secure_filename
-from ...utils.env_val import database_pwd
-import pymysql
+from ...utils.mysql_connect import register_db
 import bcrypt
 import os
+import pymysql
 
-UPLOAD_FOLDER = 'images/'  # 업로드할 위치의 절대 경로
+UPLOAD_FOLDER = 'static/db_images'  # 업로드할 위치의 절대 경로
 
 bp = Blueprint('flask_project_upload_post', __name__, url_prefix='/uploadPage')
 
@@ -23,18 +23,9 @@ def main_page():
     password = (bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt())).decode('utf-8')
 
     try :
-        # connect mysql DataBase
-        register_db = pymysql.connect(
-            host=   "localhost",
-            user=   "root", 
-            passwd= database_pwd, 
-            db=     "smc_project_community_db", 
-            charset="utf8"
-        )
-        cursor = register_db.cursor(pymysql.cursors.DictCursor)
-
-        cursor.execute("SELECT project_post_id FROM project_post order by project_post_id desc")
-        post_id = cursor.fetchall()
+        with register_db.cursor(pymysql.cursors.DictCursor) as cursor :
+            cursor.execute("SELECT project_post_id FROM project_post order by project_post_id desc")
+            post_id = cursor.fetchall()
 
         if not post_id : 
             post_id = 1
@@ -58,32 +49,33 @@ def main_page():
             filename_str = filename_list[0]
 
         try : 
-            sql = '''
-                INSERT INTO project_post (
-                    project_title,
-                    project_image_name,
-                    project_OneLine_info,
-                    project_info,
-                    project_link,
-                    github,
-                    user_insta,
-                    user_email,
+
+            with register_db.cursor(pymysql.cursors.DictCursor) as cursor :
+                sql = '''
+                    INSERT INTO project_post (
+                        project_title,
+                        project_image_name,
+                        project_OneLine_info,
+                        project_info,
+                        project_link,
+                        github,
+                        user_insta,
+                        user_email,
+                        password
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                '''
+                cursor.execute(sql, (
+                    projectName,
+                    filename_str,
+                    projectOneLineIntroduction,
+                    projectIntroduction,
+                    projectLink if projectLink else None,  # 값이 없으면 None으로 설정
+                    projectGithub if projectGithub else None,  # 값이 없으면 None으로 설정
+                    userInstagram if userInstagram else None,  # 값이 없으면 None으로 설정
+                    email,
                     password
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            '''
-            cursor.execute(sql, (
-                projectName,
-                filename_str,
-                projectOneLineIntroduction,
-                projectIntroduction,
-                projectLink if projectLink else None,  # 값이 없으면 None으로 설정
-                projectGithub if projectGithub else None,  # 값이 없으면 None으로 설정
-                userInstagram if userInstagram else None,  # 값이 없으면 None으로 설정
-                email,
-                password
-            ))
-            register_db.commit()
-            register_db.close()
+                ))
+                register_db.commit()
 
             reps = {'STATUS' : True}
 

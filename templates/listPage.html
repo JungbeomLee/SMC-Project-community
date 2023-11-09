@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Project Posts List</title>
+    <style>
+        /* Add the existing CSS rules here */
+
+/* Additional styles for the posts list page */
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-thumbnail {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.post-details {
+    margin-top: 15px;
+}
+
+.post-title {
+    color: #333;
+    font-size: 1.5em;
+}
+
+.post-introduction {
+    color: #666;
+    font-size: 1em;
+}
+
+.post-meta {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    background-color: #5C6BC0;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.read-more:hover {
+    background-color: #3F51B5;
+}
+
+footer {
+    text-align: center;
+    font-size: 12px; /* 작은 글씨 크기로 설정 */
+    color: #777; /* 글씨 색상은 회색으로 설정 */
+    width: 100%;
+    padding: 20px 0;
+    position: absolute; /* 페이지 하단에 위치하도록 설정 */
+    bottom: 0;
+    left: 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1 class="smc-highlight">Project Posts</h1>
+        {% for i in post_list %}
+        <div class="posts-list">
+            <!-- This part should be generated dynamically with server-side scripting -->
+            <div class="post-item">
+                <img src="../static/db_images/{{ i['project_image_name'] }}" alt="Project Thumbnail" class="post-thumbnail">
+                <div class="post-details">
+                    <h2 class="post-title">{{ i['project_title'] }}</h2>
+                    <p class="post-introduction">{{ i['project_OneLine_info'] }}</p>
+                    <div class="post-meta">
+                        <span>Posted on <time>2023-01-01</time></span>
+                        <span>by Author Name</span>
+                    </div>
+                    <a href="post_detail.html" class="read-more">Read More</a>
+                </div>
+            </div>
+            <!-- Repeat for each post -->
+        </div>
+        {% endfor %}
+        <footer>
+            Semyeong Computer High School @JungbeomLee
+        </footer>
+    </div>
+</body>
+</html>

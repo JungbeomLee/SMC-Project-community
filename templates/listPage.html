@@ -157,7 +157,7 @@ footer {
             {% for i in post_list %}
             <!-- This part should be generated dynamically with server-side scripting -->
             <div class="post-item">
-                <img src="../static/db_images/{{ i['project_image_name'] }}" alt="Project Thumbnail" class="post-thumbnail">
+                <img src="../static/db_images/{{ i['project_image_name'].split(',')[0] }}" alt="Project Thumbnail" class="post-thumbnail">
                 <div class="post-details">
                     <h2 class="post-title">{{ i['project_title'] }}</h2>
                     <p class="post-introduction">{{ i['project_OneLine_info'] }}</p>

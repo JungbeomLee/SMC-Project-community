@@ -40,13 +40,9 @@ def main_page():
             file.save(os.path.join(UPLOAD_FOLDER, filename))
         
         filename_str = ''
-        if len(filename_list) >= 2 :
-            for i, filename in enumerate(filename_list) :
-                filename_str += filename
-                if len(filename_list) - (i+1) != 0 :
-                    filename_str += ','
-        else :
-            filename_str = filename_list[0]
+        for filename in filename_list :
+            filename_str += filename
+            filename_str += ','
 
         try : 
 

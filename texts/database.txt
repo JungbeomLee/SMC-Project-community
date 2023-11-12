@@ -3,7 +3,7 @@ drop table project_post;
 
 CREATE TABLE project_post (
   project_post_id INT NOT NULL AUTO_INCREMENT,
-  datetime datetime,
+  datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
   project_title VARCHAR(255) NOT NULL,
   project_image_name VARCHAR(255),
   project_OneLine_info VARCHAR(255),

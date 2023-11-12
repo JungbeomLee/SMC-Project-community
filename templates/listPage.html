@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <title>Project Posts List</title>
     <style>
-        /* Add the existing CSS rules here */
-
-/* Additional styles for the posts list page */
 .content-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,43 +15,50 @@
 }
 
 .posts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 가로로 최대 200px의 너비를 가지는 칼럼을 자동으로 생성 */
+    grid-gap: 20px; /* 게시글 간 간격 설정 */
 }
+
 
 .post-item {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
 }
 
 .post-thumbnail {
-    max-width: 100%;
-    border-radius: 5px;
+    width: 100%; /* 이미지 너비를 박스에 맞춤 */
+    height: auto; /* 이미지 높이 자동 */
+    max-height: 150px; /* 이미지 최대 높이 설정 */
+    object-fit: cover; /* 이미지 비율 유지하며 커버 */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .post-details {
-    margin-top: 15px;
+    padding: 15px;
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 .post-title {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.2em; /* 제목 크기 조절 */
 }
 
 .post-introduction {
     color: #666;
-    font-size: 1em;
+    font-size: 0.9em; /* 한 줄 정보 크기 조절 */
 }
 
 .post-meta {
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: #777;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .read-more {
@@ -64,30 +68,93 @@
     padding: 10px 15px;
     border-radius: 5px;
     display: inline-block;
+    margin-top: 10px; /* 버튼 위치 조정 */
 }
 
 .read-more:hover {
     background-color: #3F51B5;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.content-container {
+    min-height: 100vh; /* 뷰포트 높이의 100%로 설정 */
+    position: relative;
+    padding-bottom: 60px; /* 푸터 높이만큼 여백을 추가 */
+}
 
 footer {
     text-align: center;
-    font-size: 12px; /* 작은 글씨 크기로 설정 */
-    color: #777; /* 글씨 색상은 회색으로 설정 */
+    font-size: 12px;
+    color: #777;
     width: 100%;
     padding: 20px 0;
-    position: absolute; /* 페이지 하단에 위치하도록 설정 */
+    position: static; /* static으로 변경 */
     bottom: 0;
     left: 0;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #5C6BC0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.pagination a.active, .pagination a:hover {
+    background-color: #3F51B5;
+    color: white;
+}
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-container button {
+    padding: 10px 15px;
+    background-color: #5C6BC0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #3F51B5;
+}
+
 
     </style>
 </head>
 <body>
     <div class="content-container">
         <h1 class="smc-highlight">Project Posts</h1>
-        {% for i in post_list %}
+        <div class="search-container">
+            <form action="/listPage" method="GET">
+                <input type="text" name="search" placeholder="Search projects...">
+                <button type="submit">Search</button>
+            </form>
+        </div>        
         <div class="posts-list">
+            {% for i in post_list %}
             <!-- This part should be generated dynamically with server-side scripting -->
             <div class="post-item">
                 <img src="../static/db_images/{{ i['project_image_name'] }}" alt="Project Thumbnail" class="post-thumbnail">
@@ -96,17 +163,23 @@ footer {
                     <p class="post-introduction">{{ i['project_OneLine_info'] }}</p>
                     <div class="post-meta">
                         <span>Posted on <time>{{ i['datetime'] }}</time></span>
-                        <span>by Author Name</span>
+                        <span>by {{ i['user_email'] }}</span>
                     </div>
                     <a href="post_detail.html" class="read-more">Read More</a>
                 </div>
             </div>
             <!-- Repeat for each post -->
+            {% endfor %}
+            <!-- Pagination Controls -->
         </div>
-        {% endfor %}
+        <div class="pagination">
+            {% for page_num in range(1, total_pages + 1) %}
+            <a href="/listPage?page={{ page_num }}&search={{ request.args.get('search', '') }}" class="{{ 'active' if page_num == current_page else '' }}">{{ page_num }}</a>
+            {% endfor %}
+        </div>        
         <footer>
             Semyeong Computer High School @JungbeomLee
         </footer>
     </div>
 </body>
-</html>
+

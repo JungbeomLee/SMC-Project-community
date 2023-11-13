@@ -23,12 +23,12 @@
 }
 
 .post-thumbnail {
-    width: 100%; /* 이미지 너비를 박스에 맞춤 */
+    width: auto; /* 이미지 너비 자동 */
     height: auto; /* 이미지 높이 자동 */
+    max-width: 100%; /* 최대 너비 제한 */
     max-height: 150px; /* 이미지 최대 높이 설정 */
-    object-fit: cover; /* 이미지 비율 유지하며 커버 */
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    object-fit: contain; /* 이미지 비율 유지하며 칸에 맞추기 */
+    margin: auto; /* 중앙 정렬 */
 }
 
 .post-details {

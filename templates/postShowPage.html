@@ -9,34 +9,34 @@
 </head>
 <body>
     <div class="post-container">
+        {% for i in post_list %}
         <div class="image-slider">
             <div class="slide">
-                <img src="path_to_image1.jpg" alt="Image Description 1">
+                <img src="../static/db_images/{{ i['project_image_name'].split(',')[0] }}" alt="Image Description 1">
             </div>
             <div class="slide">
-                <img src="path_to_image2.jpg" alt="Image Description 2">
+                <img src="../static/db_images/{{ i['project_image_name'].split(',')[0] }}" alt="Image Description 2">
             </div>
             <!-- More image slides here -->
         </div>
         <div class="info-slider">
             <div class="info-slide">
-                <h2><title></title></h2>
-                <p>One-liner description 1</p>
-                <p>Full project description for post 1...</p>
+                <div class="title-box">
+                    <h2>{{ i['project_title'] }}</h2>
+                    <p>{{ i['project_OneLine_info'] }}</p>
+                </div>
+                <div class="info-box">
+                    <div class="project-info">{{ i['project_info'] | safe }}</div>
+                </div>
             </div>
-            <div class="info-slide">
-                <h2>Post Title 2</h2>
-                <p>One-liner description 2</p>
-                <p>Full project description for post 2...</p>
-            </div>
-            <!-- More info slides here -->
-        </div>
+        </div>            
         <div class="author-info">
             <p>Email: author@example.com</p>
             <p>Instagram: @authorhandle</p>
             <p>Project Link: <a href="http://projectlink.com">projectlink.com</a></p>
             <p>GitHub: <a href="http://github.com/author">github.com/author</a></p>
         </div>
+        {% endfor %}
     </div>
     <script>
         // Simple JavaScript for Sliders

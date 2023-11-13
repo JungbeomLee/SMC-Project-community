@@ -1,0 +1,134 @@
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.posts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 가로로 최대 200px의 너비를 가지는 칼럼을 자동으로 생성 */
+    grid-gap: 20px; /* 게시글 간 간격 설정 */
+}
+
+
+.post-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+}
+
+.post-thumbnail {
+    width: 100%; /* 이미지 너비를 박스에 맞춤 */
+    height: auto; /* 이미지 높이 자동 */
+    max-height: 150px; /* 이미지 최대 높이 설정 */
+    object-fit: cover; /* 이미지 비율 유지하며 커버 */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.post-details {
+    padding: 15px;
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.post-title {
+    color: #333;
+    font-size: 1.2em; /* 제목 크기 조절 */
+}
+
+.post-introduction {
+    color: #666;
+    font-size: 0.9em; /* 한 줄 정보 크기 조절 */
+}
+
+.post-meta {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 10px;
+}
+
+.read-more {
+    background-color: #5C6BC0;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px; /* 버튼 위치 조정 */
+}
+
+.read-more:hover {
+    background-color: #3F51B5;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.content-container {
+    min-height: 100vh; /* 뷰포트 높이의 100%로 설정 */
+    position: relative;
+    padding-bottom: 60px; /* 푸터 높이만큼 여백을 추가 */
+}
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    width: 100%;
+    padding: 20px 0;
+    position: static; /* static으로 변경 */
+    bottom: 0;
+    left: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #5C6BC0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.pagination a.active, .pagination a:hover {
+    background-color: #3F51B5;
+    color: white;
+}
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-container button {
+    padding: 10px 15px;
+    background-color: #5C6BC0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #3F51B5;
+}
+

@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.post-container {
+    display: flex;
+    max-width: 1200px;
+    height: 80vh; /* Set the height relative to the viewport height */
+    margin: 10vh auto; /* Vertically center the container with equal top and bottom margins */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.image-slider, .info-slider {
+    width: 50%;
+    overflow: hidden;
+}
+
+.image-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+}
+
+.info-slider {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.slide, .info-slide {
+    display: none;
+    animation: fade 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.author-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Default display for the first slide */
+.slide:first-child, .info-slide:first-child {
+    display: block;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-container {
+        flex-direction: column;
+        height: auto; /* Allow the container to grow as needed on smaller screens */
+    }
+    .image-slider, .info-slider {
+        width: 100%;
+    }
+}

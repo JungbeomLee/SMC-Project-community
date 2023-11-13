@@ -8,12 +8,14 @@ def create_app():
     from views.upload_project.flask_project_upload import bp as flask_project_upload
     from views.upload_project.post.flask_project_upload_post import bp as flask_project_upload_post
     from views.list_project.flask_project_list import bp as flask_project_list
+    from views.list_project.flask_project_show import bp as flask_project_show
 
     # Register the blueprint
     app.register_blueprint(flask_main_bp)
     app.register_blueprint(flask_project_upload)
     app.register_blueprint(flask_project_upload_post)
     app.register_blueprint(flask_project_list)
+    app.register_blueprint(flask_project_show)
 
     # Run the application
     app.run(host='0.0.0.0', port=8000, debug=True)

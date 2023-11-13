@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Detail Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.post-container {
+    display: flex;
+    max-width: 1200px;
+    height: 80vh; /* Set the height relative to the viewport height */
+    margin: 10vh auto; /* Vertically center the container with equal top and bottom margins */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.image-slider, .info-slider {
+    width: 50%;
+    overflow: hidden;
+}
+
+.image-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+}
+
+.info-slider {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.slide, .info-slide {
+    display: none;
+    animation: fade 0.5s;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.author-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Default display for the first slide */
+.slide:first-child, .info-slide:first-child {
+    display: block;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-container {
+        flex-direction: column;
+        height: auto; /* Allow the container to grow as needed on smaller screens */
+    }
+    .image-slider, .info-slider {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <div class="image-slider">
+            <div class="slide">
+                <img src="path_to_image1.jpg" alt="Image Description 1">
+            </div>
+            <div class="slide">
+                <img src="path_to_image2.jpg" alt="Image Description 2">
+            </div>
+            <!-- More image slides here -->
+        </div>
+        <div class="info-slider">
+            <div class="info-slide">
+                <h2>Post Title 1</h2>
+                <p>One-liner description 1</p>
+                <p>Full project description for post 1...</p>
+            </div>
+            <div class="info-slide">
+                <h2>Post Title 2</h2>
+                <p>One-liner description 2</p>
+                <p>Full project description for post 2...</p>
+            </div>
+            <!-- More info slides here -->
+        </div>
+        <div class="author-info">
+            <p>Email: author@example.com</p>
+            <p>Instagram: @authorhandle</p>
+            <p>Project Link: <a href="http://projectlink.com">projectlink.com</a></p>
+            <p>GitHub: <a href="http://github.com/author">github.com/author</a></p>
+        </div>
+    </div>
+    <script>
+        // Simple JavaScript for Sliders
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("slide");
+  var infoSlides = document.getElementsByClassName("info-slide");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < infoSlides.length; i++) {
+      infoSlides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+  infoSlides[slideIndex-1].style.display = "block";
+}
+    </script>
+</body>
+</html>

@@ -20,6 +20,7 @@ body {
 }
 
 .image-slider {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,50 +29,33 @@ body {
 }
 
 .info-slider {
+    display: flex;
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    flex-direction: column;
     padding: 20px;
     background-color: #fff;
+    height: 100%; /* 필요한 경우 높이를 조정 */
 }
 
-.slide, .info-slide {
-    display: none;
-    animation: fade 0.5s;
-}
-
-.slide img {
-    width: 100%;
-    height: auto;
-}
-
-.author-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* Default display for the first slide */
-.slide:first-child, .info-slide:first-child {
-    display: block;
-}
-
-.title-box, .info-box {
-    background-color: #fff; /* 배경색 */
-    border-radius: 10px; /* 둥근 모서리 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    padding: 20px; /* 내부 여백 */
-    margin-bottom: 20px; /* 박스 간 간격 */
-    text-align: center; /* 텍스트 중앙 정렬 */
+.title-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .title-box h2, .title-box p {
-    margin: 0; /* 기본 여백 제거 */
-    padding: 10px 0; /* 위아래 여백 */
+    margin: 0;
+    padding: 10px 0;
 }
 
 .info-box {
+    flex-grow: 0; /* 성장하지 않도록 설정 */
+    flex-shrink: 0; /* 축소하지 않도록 설정 */
+    flex-basis: 70%; /* 초기 기본 크기 설정, 필요에 따라 조정 가능 */
     text-align: left;
-    height: 700px; /* 고정된 높이 설정 */
     overflow-y: auto; /* 세로 스크롤 활성화 */
     padding: 15px;
     margin-bottom: 20px;
@@ -81,18 +65,92 @@ body {
 }
 
 
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+.author-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .post-container {
-        flex-direction: column;
-        height: auto; /* Allow the container to grow as needed on smaller screens */
-    }
-    .image-slider, .info-slider {
-        width: 100%;
-    }
+.image-slider .prev, .image-slider .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* 세로 중앙 정렬 */
+    transform: translateY(-50%); /* 세로 중앙 정렬을 정확하게 맞추기 위함 */
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    user-select: none;
+    z-index: 1; /* 다른 요소 위에 표시 */
+}
+
+.image-slider .prev {
+    left: 0; /* 슬라이더의 왼쪽 가장자리 */
+}
+
+.image-slider .next {
+    right: 0; /* 슬라이더의 오른쪽 가장자리 */
+}
+
+.image-slider .prev:hover, .image-slider .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Webkit 스크롤 바 스타일링 */
+.info-box::-webkit-scrollbar {
+    width: 12px; /* 스크롤 바의 너비 */
+}
+
+.info-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤 바 트랙의 배경색 */
+    border-radius: 10px;
+}
+
+.info-box::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤 바의 색상 */
+    border-radius: 10px;
+}
+
+.info-box::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 스크롤 바에 호버할 때의 색상 */
+}
+
+/* 파이어폭스 스크롤 바 스타일링 */
+.info-box {
+    scrollbar-width: thin; /* 스크롤 바의 두께: 'auto', 'thin', 'none' 중 선택 */
+    scrollbar-color: #888 #f1f1f1; /* 스크롤 바/트랙 색상: thumb and track */
+}
+
+/* Webkit 스크롤 바 스타일링 */
+.info-slider::-webkit-scrollbar {
+    width: 12px; /* 스크롤 바의 너비 */
+}
+
+.info-slider::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤 바 트랙의 배경색 */
+    border-radius: 10px;
+}
+
+.info-slider::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤 바의 색상 */
+    border-radius: 10px;
+}
+
+.info-slider::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 스크롤 바에 호버할 때의 색상 */
+}
+
+/* 파이어폭스 스크롤 바 스타일링 */
+.info-slider {
+    scrollbar-width: thin; /* 스크롤 바의 두께: 'auto', 'thin', 'none' 중 선택 */
+    scrollbar-color: #888 #f1f1f1; /* 스크롤 바/트랙 색상: thumb and track */
+}
+
+.comment-box {
+    min-height: 50px; /* 필요에 따라 조정 */
+    margin-bottom: 10%;
 }

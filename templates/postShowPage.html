@@ -11,63 +11,74 @@
     <div class="post-container">
         {% for i in post_list %}
         <div class="image-slider">
-            <div class="slide">
-                <img src="../static/db_images/{{ i['project_image_name'].split(',')[0] }}" alt="Image Description 1">
-            </div>
-            <div class="slide">
-                <img src="../static/db_images/{{ i['project_image_name'].split(',')[0] }}" alt="Image Description 2">
-            </div>
-            <!-- More image slides here -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        
+            {% for j in i['project_image_name'].split(',') %}
+                {% if (j != '') %}
+                    <div class="slide">
+                        <img src="../static/db_images/{{ j }}" alt="Image Description 1">
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
+        
         <div class="info-slider">
-            <div class="info-slide">
-                <div class="title-box">
-                    <h2>{{ i['project_title'] }}</h2>
-                    <p>{{ i['project_OneLine_info'] }}</p>
-                </div>
-                <div class="info-box">
-                    <div class="project-info">{{ i['project_info'] | safe }}</div>
-                </div>
+            <div class="title-box">
+                <h2>{{ i['project_title'] }}</h2>
+                <p>{{ i['project_OneLine_info'] }}</p>
             </div>
-        </div>            
-        <div class="author-info">
-            <p>Email: author@example.com</p>
-            <p>Instagram: @authorhandle</p>
-            <p>Project Link: <a href="http://projectlink.com">projectlink.com</a></p>
-            <p>GitHub: <a href="http://github.com/author">github.com/author</a></p>
-        </div>
+            <div class="info-box">
+                <div class="project-info">{{ i['project_info'] | safe }}</div>
+            </div>
+            <div class="title-box">
+                <p>Email: {{ i['user_email']}}</p>
+                {% if (i['user_insta']) != None %}
+                <p>Instagram: {{ i['user_insta'] }}</p>
+                {% endif %}
+                {% if (i['project_link']) != None %}
+                <p>Project Link: <a href="{{ i['project_link'] }}">{{ i['project_link'] }}</a></p>
+                {% endif %}
+                {% if (i['github']) != None %}
+                <p>GitHub: <a href="{{ i['github'] }}">{{ i['github'] }}</a></p>
+                {% endif %}
+            </div>
+            <div class="info-box comment-box">
+                <div class="project-info"></div>
+            </div>
+        </div>          
         {% endfor %}
     </div>
     <script>
         // Simple JavaScript for Sliders
-var slideIndex = 1;
-showSlides(slideIndex);
+        var slideIndex = 1;
+        showSlides(slideIndex);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("slide");
-  var infoSlides = document.getElementsByClassName("info-slide");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < infoSlides.length; i++) {
-      infoSlides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
-  infoSlides[slideIndex-1].style.display = "block";
-}
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slide");
+        var infoSlides = document.getElementsByClassName("info-slide");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < infoSlides.length; i++) {
+            infoSlides[i].style.display = "none";
+        }
+        slides[slideIndex-1].style.display = "block";
+        infoSlides[slideIndex-1].style.display = "block";
+        }
     </script>
 </body>
 </html>

@@ -28,11 +28,7 @@ def main_page():
 
                     image_list = os.listdir('./static/db_images')
                     for image_name in image_list :
-                        print(image_name[0], postID)
-                        print(type(image_name[0]), type(postID))
-                        if image_name[0] == str(postID) :
-                            print(image_name)
-                            print('hio')
+                        if image_name[:len(str(postID))] == str(postID) :
                             os.remove('./static/db_images/'+image_name)
 
                     return {'STATUS': True}

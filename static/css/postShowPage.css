@@ -26,6 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ddd;
+    height: 100%; /* image-slider의 높이를 명시적으로 설정 */
 }
 
 .info-slider {
@@ -150,7 +151,144 @@ body {
     scrollbar-color: #888 #f1f1f1; /* 스크롤 바/트랙 색상: thumb and track */
 }
 
-.comment-box {
-    min-height: 50px; /* 필요에 따라 조정 */
+.delete-button-container {
+    min-height: 10px; /* 필요에 따라 조정 */
     margin-bottom: 10%;
 }
+
+.slide {
+    width: 100%;  /* slide의 너비를 image-slider의 너비와 동일하게 설정 */
+    height: 100%; /* slide의 높이를 image-slider의 높이와 동일하게 설정 */
+    display: flex;
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+}
+
+.slide img {
+    max-width: 100%;  /* 이미지의 최대 너비를 slide의 너비로 제한 */
+    max-height: 100%; /* 이미지의 최대 높이를 slide의 높이로 제한 */
+    object-fit: contain; /* 이미지의 비율을 유지하면서 slide 안에 맞춤 */
+}
+
+.delete-button-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.delete-button-container button {
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button-container button:hover {
+    background-color: #ff3333;
+}
+
+.comment-box {
+    margin-bottom: 20px;
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.comment-text {
+    font-size: 1em;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap; /* 줄바꿈과 공백을 유지 */
+}
+
+
+
+#commentInput {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+#commentForm button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#commentForm button:hover {
+    background-color: #0056b3;
+}
+
+#commentsList {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+#commentForm input[type="text"], 
+#commentForm input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 댓글 폼 스타일 */
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#commentForm input, #commentForm textarea {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#commentForm button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#commentForm button:hover {
+    background-color: #0056b3;
+}
+
+/* 댓글 목록 스타일 */
+#commentsList {
+    margin-top: 20px;
+}
+
+.comment-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.comment-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    font-size: 1em;
+}
+

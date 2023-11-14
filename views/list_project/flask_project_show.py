@@ -14,10 +14,12 @@ def main_page(select_board_number):
             cursor.execute("SELECT * FROM project_post WHERE project_post_id = %s", (select_board_number,))
             post_list = cursor.fetchall()
 
-        return render_template('postShowPage.html', post_list=post_list)
+            cursor.execute("SELECT * FROM project_post_comment WHERE project_post_id = %s", (select_board_number,))
+            comment_list = cursor.fetchall()
+
+        return render_template('postShowPage.html', post_list=post_list, comment_list = comment_list)
     except Exception as e:
         # 오류 로깅 및 처리
         print(f"An error occurred: {e}")
-        # 적절한 오류 응답 반환
 
     

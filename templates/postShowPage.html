@@ -44,41 +44,30 @@
                 {% endif %}
             </div>
             <div class="info-box comment-box">
-                <div class="project-info"></div>
+                <form id="commentForm" onsubmit="uploadComment(event);">
+                    <input type="text" id="commentName" placeholder="Your Name" required>
+                    <input type="password" id="commentPassword" placeholder="Password" required>
+                    <textarea id="commentInput" placeholder="Add a comment..." required></textarea>
+                    <button type="submit" >Post Comment</button>
+                </form>
+                <div id="commentsList">
+                    {% for i in comment_list %}
+                    <div class="comment-item">
+                        <div class="comment-meta">
+                            <strong>{{ i['user_name'] }}</strong> - <span>{{ i['comment_date'] }}</span>
+                        </div>
+                        <div class="comment-text">{{ i['comment_text'] }}</div>
+                    </div>
+                    {% endfor %}
+                </div>                
+            </div>                       
+            <div class="delete-button-container">
+                <button onclick="promptDelete()">Delete Post</button>
             </div>
         </div>          
         {% endfor %}
     </div>
-    <script>
-        // Simple JavaScript for Sliders
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        // Next/previous controls
-        function plusSlides(n) {
-        showSlides(slideIndex += n);
-        }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-        showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("slide");
-        var infoSlides = document.getElementsByClassName("info-slide");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < infoSlides.length; i++) {
-            infoSlides[i].style.display = "none";
-        }
-        slides[slideIndex-1].style.display = "block";
-        infoSlides[slideIndex-1].style.display = "block";
-        }
-    </script>
+    <script src="../static/javascript/postShowPage.js"></script>z
+    <script src="../static/javascript/postShowPage_post.js"></script>
 </body>
 </html>

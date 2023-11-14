@@ -24,13 +24,10 @@ def main_page():
 
     try :
         with register_db.cursor(pymysql.cursors.DictCursor) as cursor :
-            cursor.execute("SELECT project_post_id FROM project_post order by project_post_id desc")
-            post_id = cursor.fetchall()
-
-        if not post_id : 
-            post_id = 1
-        else :
-            post_id = post_id[0]['project_post_id']+1
+            cursor.execute("SHOW TABLE STATUS LIKE 'project_post'")
+            post_id = cursor.fetchone()
+            post_id = post_id['Auto_increment']
+            print(post_id)
 
         # 이미지 파일 저장
         filename_list = []
@@ -77,9 +74,13 @@ def main_page():
 
             return reps
         except Exception as e :
+            error_message = str(e)
+            print(e)
             reps = {'STATUS' : False, 'ERROR' : e}
             return reps
 
     except Exception as e :
+        error_message = str(e)
+        print(e)
         reps = {'STATUS' : False, 'ERROR' : e}
         return reps

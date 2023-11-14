@@ -9,6 +9,8 @@ def create_app():
     from views.upload_project.post.flask_project_upload_post import bp as flask_project_upload_post
     from views.list_project.flask_project_list import bp as flask_project_list
     from views.list_project.flask_project_show import bp as flask_project_show
+    from views.list_project.post.flask_project_show_comment_post import bp as flask_project_show_comment_post
+    from views.list_project.post.flask_project_show_comment_del_post import bp as flask_project_show_comment_del_post
 
     # Register the blueprint
     app.register_blueprint(flask_main_bp)
@@ -16,6 +18,8 @@ def create_app():
     app.register_blueprint(flask_project_upload_post)
     app.register_blueprint(flask_project_list)
     app.register_blueprint(flask_project_show)
+    app.register_blueprint(flask_project_show_comment_post)
+    app.register_blueprint(flask_project_show_comment_del_post)
 
     # Run the application
     app.run(host='0.0.0.0', port=8000, debug=True)
